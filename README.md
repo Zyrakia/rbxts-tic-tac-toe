@@ -46,3 +46,17 @@ switch (state) {
 		break;
 }
 ```
+
+## Benchmark
+
+I am just including this section because I was curious myself, performance really isn't a concern though. Basically, I transformed the example above into a benchmark which runs 50,000 times, and accumulates each state instead of printing it. Each game took about 130μs.
+
+Here is the output, this uses my benchmark utility from `@rbxts/zycore` by the way.
+
+```
+Benchmark(TicTacToe): 128.93 μs (6.45 s for 50000 runs)
+X: 16084
+O: 16295
+Draw: 17621
+Total: 50000
+```
