@@ -2,7 +2,7 @@
 
 This is a simple module to run games of tic-tac-toe. You can create your own players and outputs to match what your game needs and then let all the logic be handled by this module, simple as that.
 
-For example, if you want this game to be played by two differently Roblox players, you could create a `NetworkPlayer`, which when asked for a move, waits for a `RemoteEvent` from a player specified in the constructor. Alongside that, to update participants of a game, you could create a `NetworkOutput` which sends the game information to each participating player whenever something about the game changes.
+For example, if you want this game to be played by two different Roblox players, you could create a `NetworkPlayer`, which when asked for a move, waits for a `RemoteEvent` from a player specified in the constructor. Alongside that, to update participants of a game, you could create a `NetworkOutput` which sends the game information to each participating player whenever something about the game changes.
 
 ## Example
 
