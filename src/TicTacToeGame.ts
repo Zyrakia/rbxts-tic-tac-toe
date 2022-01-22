@@ -29,6 +29,9 @@ export class TicTacToeGame<
 	/** The current state of the game. */
 	private state = TicTacToeState.IN_PROGRESS;
 
+	/** The current winner of the game, if there is one. */
+	private winner?: X | O;
+
 	/** The current winning cells if there are any. */
 	private winningCells?: TicTacToeCell[];
 
@@ -110,6 +113,10 @@ export class TicTacToeGame<
 		if (state !== TicTacToeState.IN_PROGRESS)
 			this.outputs.forEach((output) => output.onGameOver?.(this));
 		else this.outputs.forEach((output) => output.onMove?.(this));
+
+		if (state === TicTacToeState.X_WON) {
+			this.winner = this.playerX;
+		} else if (state === TicTacToeState.O_WON) this.winner = this.playerO;
 	}
 
 	/**
@@ -161,6 +168,7 @@ export class TicTacToeGame<
 		this.currentPlayer = this.getPlayerFromSymbol(firstPlayer);
 		this.state = TicTacToeState.IN_PROGRESS;
 		this.winningCells = undefined;
+		this.winner = undefined;
 		this.lastMove = undefined;
 
 		this.outputs.forEach((output) => output.onGameStart?.(this));
@@ -206,6 +214,13 @@ export class TicTacToeGame<
 	 */
 	public getLastMove() {
 		return this.lastMove;
+	}
+
+	/**
+	 * Returns the current winner, if any.
+	 */
+	public getWinner() {
+		return this.winner;
 	}
 
 	/**
