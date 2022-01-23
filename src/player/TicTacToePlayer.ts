@@ -18,7 +18,7 @@ export abstract class TicTacToePlayer {
 	 * @param board The board to make a move on.
 	 * @returns The move the player made, or undefined if the game should be cancelled.
 	 */
-	public abstract makeMove(board: TicTacToeBoard): TicTacToeMove | undefined;
+	public abstract makeMove(board: TicTacToeBoard): TicTacToeMove | undefined | void;
 
 	/**
 	 * Returns the name of this player.

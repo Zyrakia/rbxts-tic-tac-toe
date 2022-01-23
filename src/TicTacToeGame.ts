@@ -1,6 +1,7 @@
 import { TicTacToeMoveResult } from 'enum/TicTacToeMoveResult';
 import { TicTacToeState } from 'enum/TicTacToeState';
 import { TicTacToeSymbol } from 'enum/TicTacToeSymbol';
+import { TicTacToeManualPlayer, TicTacToeRandomPlayer, TicTacToeStringOutput } from 'index';
 import { TicTacToeOutput } from 'output/TicTacToeOutput';
 import { TicTacToePlayer } from 'player/TicTacToePlayer';
 import { TicTacToeBoard } from 'TicTacToeBoard';
@@ -21,7 +22,7 @@ export class TicTacToeGame<
 	private board = new TicTacToeBoard();
 
 	/** The outputs that the game announces to. */
-	private outputs: TicTacToeOutput[];
+	private outputs: TicTacToeOutput<TicTacToeGame<X, O>>[];
 
 	/** The player that is responsible for making the next move. */
 	private currentPlayer: X | O;
@@ -50,7 +51,7 @@ export class TicTacToeGame<
 		private playerX: X,
 		private playerO: O,
 		firstPlayer: TicTacToeSymbol = TicTacToeSymbol.EMPTY,
-		...outputs: TicTacToeOutput[]
+		...outputs: TicTacToeOutput<TicTacToeGame<X, O>>[]
 	) {
 		this.currentPlayer = this.getPlayerFromSymbol(firstPlayer);
 		this.outputs = outputs;
@@ -83,7 +84,7 @@ export class TicTacToeGame<
 		this.board.setCell(cell);
 
 		this.handleMoveMade(move);
-		this.nextPlayer();
+		this.currentPlayer = this.getNextPlayer();
 		return TicTacToeMoveResult.SUCCESS;
 	}
 
@@ -129,10 +130,10 @@ export class TicTacToeGame<
 	}
 
 	/**
-	 * Rotates the current player.
+	 * Returns the player that is responsible for making the next move.
 	 */
-	private nextPlayer() {
-		this.currentPlayer = this.currentPlayer === this.playerX ? this.playerO : this.playerX;
+	public getNextPlayer() {
+		return this.currentPlayer === this.playerX ? this.playerO : this.playerX;
 	}
 
 	/**
@@ -250,7 +251,7 @@ export class TicTacToeGame<
 	 *
 	 * @param output The output to add.
 	 */
-	public addOutputs(...outputs: TicTacToeOutput[]) {
+	public addOutputs(...outputs: TicTacToeOutput<TicTacToeGame<X, O>>[]) {
 		this.outputs = [...this.outputs, ...outputs];
 	}
 
