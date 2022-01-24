@@ -48,7 +48,7 @@ export class TicTacToeStringOutput implements TicTacToeOutput {
 	 * @returns An array of lines representing the board lines.
 	 */
 	private constructBoardLines(board: TicTacToeBoard) {
-		const lines: string[] = [this.sep.rep(8)];
+		const lines: string[] = [this.sep.rep(13)];
 
 		for (let row = 0; row < 3; row++) {
 			const cells = board.getRow(row);
@@ -64,7 +64,7 @@ export class TicTacToeStringOutput implements TicTacToeOutput {
 			lines.push(s);
 		}
 
-		lines.push(this.sep.rep(8));
+		lines.push(this.sep.rep(13));
 		return lines;
 	}
 
