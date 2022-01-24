@@ -18,10 +18,10 @@ export class TicTacToeTestOutput implements TicTacToeOutput {
 		this.movesMade++;
 	}
 
-	public onGameOver(game: TicTacToeGame) {
+	public onGameOver(g: TicTacToeGame) {
 		this.gamesEnded++;
 
-		const state = game.getState();
+		const state = g.getState();
 		if (state === TicTacToeState.DRAW) this.draws++;
 		else if (state === TicTacToeState.X_WON) this.xWins++;
 		else if (state === TicTacToeState.O_WON) this.oWins++;
