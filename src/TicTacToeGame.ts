@@ -117,7 +117,7 @@ export class TicTacToeGame<
 
 		this.lastMove = move;
 
-		this.outputs.forEach((output) => output.onGameOver?.(this));
+		if (this.isOver()) this.outputs.forEach((output) => output.onGameOver?.(this));
 		this.outputs.forEach((output) => output.onMove?.(this));
 	}
 
