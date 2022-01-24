@@ -1,7 +1,6 @@
 import { TicTacToeMoveResult } from 'enum/TicTacToeMoveResult';
 import { TicTacToeState } from 'enum/TicTacToeState';
 import { TicTacToeSymbol } from 'enum/TicTacToeSymbol';
-import { TicTacToeManualPlayer, TicTacToeRandomPlayer, TicTacToeStringOutput } from 'index';
 import { TicTacToeOutput } from 'output/TicTacToeOutput';
 import { TicTacToePlayer } from 'player/TicTacToePlayer';
 import { TicTacToeBoard } from 'TicTacToeBoard';
@@ -72,11 +71,13 @@ export class TicTacToeGame<
 	public nextMove() {
 		if (this.isOver()) return TicTacToeMoveResult.GAME_UNAVAILABLE;
 
-		const move = this.currentPlayer.makeMove(this.board);
-		if (!move) {
+		const moveLocation = this.currentPlayer.makeMove(this.board, this.getCurrentPlayerSymbol());
+		if (!moveLocation) {
 			this.cancel();
 			return TicTacToeMoveResult.NO_RESPONSE;
 		}
+
+		const move = new TicTacToeMove(moveLocation.row, moveLocation.col, this.currentPlayer);
 
 		if (!this.board.isValidMove(move)) return TicTacToeMoveResult.INVALID;
 
@@ -116,9 +117,8 @@ export class TicTacToeGame<
 
 		this.lastMove = move;
 
-		if (state !== TicTacToeState.IN_PROGRESS)
-			this.outputs.forEach((output) => output.onGameOver?.(this));
-		else this.outputs.forEach((output) => output.onMove?.(this));
+		this.outputs.forEach((output) => output.onGameOver?.(this));
+		this.outputs.forEach((output) => output.onMove?.(this));
 	}
 
 	/**
