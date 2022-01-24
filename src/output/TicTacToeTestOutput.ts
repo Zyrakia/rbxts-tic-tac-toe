@@ -1,4 +1,4 @@
-import { TicTacToeState } from 'index';
+import { TicTacToeState } from 'enum/TicTacToeState';
 import { TicTacToeGame } from 'TicTacToeGame';
 import { TicTacToeOutput } from './TicTacToeOutput';
 
