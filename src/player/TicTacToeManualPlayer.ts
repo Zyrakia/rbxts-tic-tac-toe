@@ -13,7 +13,7 @@ export class TicTacToeManualPlayer extends TicTacToePlayer {
 	 * Constructs a new TicTacToeManualPlayer.
 	 *
 	 * @param name The name of the player.
-	 * @param alwaysHaveMove Whether the player should chose a random move if no move is set.
+	 * @param alwaysHaveMove Whether the player should chose a random move if no move is set. Defaults to true.
 	 */
 	public constructor(name: string, private alwaysHaveMove = true) {
 		super(name);
