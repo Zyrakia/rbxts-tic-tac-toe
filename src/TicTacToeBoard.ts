@@ -92,7 +92,10 @@ export class TicTacToeBoard {
 	 *
 	 * @returns The state of the game and the winning cells if applicable.
 	 */
-	public getCurrentState(): [TicTacToeState, TicTacToeCell[] | undefined] {
+	public getCurrentState(): [
+		Exclude<TicTacToeState, TicTacToeState.CANCELLED>,
+		TicTacToeCell[] | undefined,
+	] {
 		if (this.isEmpty()) return [TicTacToeState.IN_PROGRESS, undefined];
 
 		const lines = [
