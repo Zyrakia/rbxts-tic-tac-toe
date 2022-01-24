@@ -5,10 +5,11 @@
     "main": "out/init.lua",
     "license": "MIT",
     "scripts": {
-        "build": "rbxtsc",
+        "clean": "rimraf out",
+        "build": "yarn clean && rbxtsc",
         "watch": "rbxtsc -w",
-        "prepublishOnly": "yarn run build",
-        "test": "rbxtsc --type=game && rojo build -o ./test.rbxlx && run-in-roblox --place ./test.rbxlx --script ./out/__tests__/test-runner.server.lua"
+        "prepublishOnly": "yarn build",
+        "test": "yarn clean && rbxtsc --type=game && rojo build -o ./test.rbxlx && run-in-roblox --place ./test.rbxlx --script ./out/__tests__/test-runner.server.lua"
     },
     "repository": {
         "type": "git",
@@ -31,9 +32,9 @@
     ],
     "devDependencies": {
         "@rbxts/compiler-types": "^1.2.7-types.1",
-        "@rbxts/types": "^1.0.570",
         "@rbxts/services": "^1.2.0",
-        "@rbxts/testez": "^0.3.1-ts.7"
-    },
-    "dependencies": {}
+        "@rbxts/testez": "^0.3.1-ts.7",
+        "@rbxts/types": "^1.0.570",
+        "rimraf": "^3.0.2"
+    }
 }
