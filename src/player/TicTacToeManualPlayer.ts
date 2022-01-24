@@ -1,5 +1,4 @@
 import { TicTacToeBoard } from 'TicTacToeBoard';
-import { TicTacToeMove } from 'TicTacToeMove';
 import { TicTacToePlayer } from './TicTacToePlayer';
 
 /**
@@ -8,7 +7,7 @@ import { TicTacToePlayer } from './TicTacToePlayer';
  */
 export class TicTacToeManualPlayer extends TicTacToePlayer {
 	/** The next move that the player should make. */
-	private nextMove?: TicTacToeMove;
+	private nextMove?: { row: number; col: number };
 
 	/**
 	 * Constructs a new TicTacToeManualPlayer.
@@ -21,7 +20,7 @@ export class TicTacToeManualPlayer extends TicTacToePlayer {
 	}
 
 	/** @hidden */
-	public makeMove(board: TicTacToeBoard): TicTacToeMove | undefined {
+	public makeMove(board: TicTacToeBoard) {
 		if (this.nextMove) {
 			const move = this.nextMove;
 			this.nextMove = undefined;
@@ -40,7 +39,7 @@ export class TicTacToeManualPlayer extends TicTacToePlayer {
 	private getRandom(board: TicTacToeBoard) {
 		const emptyCells = board.getEmptyCells();
 		const randomCell = emptyCells[math.floor(math.random() * emptyCells.size())];
-		return new TicTacToeMove(randomCell.getRow(), randomCell.getCol(), this);
+		return { row: randomCell.getRow(), col: randomCell.getCol() };
 	}
 
 	/**
@@ -52,6 +51,6 @@ export class TicTacToeManualPlayer extends TicTacToePlayer {
 	 * @param col The column of the next move.
 	 */
 	public setNext(row: number, col: number) {
-		this.nextMove = new TicTacToeMove(row, col, this);
+		this.nextMove = { row, col };
 	}
 }

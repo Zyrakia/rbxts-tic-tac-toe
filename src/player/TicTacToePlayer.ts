@@ -1,5 +1,5 @@
+import { TicTacToeSymbol } from 'enum/TicTacToeSymbol';
 import { TicTacToeBoard } from 'TicTacToeBoard';
-import { TicTacToeMove } from 'TicTacToeMove';
 
 /**
  * The base class for a TicTacToe player.
@@ -18,7 +18,10 @@ export abstract class TicTacToePlayer {
 	 * @param board The board to make a move on.
 	 * @returns The move the player made, or undefined if the game should be cancelled.
 	 */
-	public abstract makeMove(board: TicTacToeBoard): TicTacToeMove | undefined | void;
+	public abstract makeMove(
+		board: TicTacToeBoard,
+		ownSymbol: Exclude<TicTacToeSymbol, TicTacToeSymbol.EMPTY>,
+	): { row: number; col: number } | undefined | void;
 
 	/**
 	 * Returns the name of this player.

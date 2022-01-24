@@ -1,5 +1,4 @@
 import { TicTacToeBoard } from 'TicTacToeBoard';
-import { TicTacToeMove } from 'TicTacToeMove';
 import { TicTacToePlayer } from './TicTacToePlayer';
 
 /**
@@ -9,9 +8,9 @@ import { TicTacToePlayer } from './TicTacToePlayer';
  */
 export class TicTacToeRandomPlayer extends TicTacToePlayer {
 	/** @hidden */
-	public makeMove(board: TicTacToeBoard): TicTacToeMove {
+	public makeMove(board: TicTacToeBoard) {
 		const emptyCells = board.getEmptyCells();
 		const randomCell = emptyCells[math.floor(math.random() * emptyCells.size())];
-		return new TicTacToeMove(randomCell.getRow(), randomCell.getCol(), this);
+		return { row: randomCell.getRow(), col: randomCell.getCol() };
 	}
 }
