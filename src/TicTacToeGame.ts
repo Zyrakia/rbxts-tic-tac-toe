@@ -109,15 +109,16 @@ export class TicTacToeGame<
 
 		this.state = state;
 		this.winningCells = winningCells;
+
+		if (state === TicTacToeState.X_WON) {
+			this.winner = this.playerX;
+		} else if (state === TicTacToeState.O_WON) this.winner = this.playerO;
+
 		this.lastMove = move;
 
 		if (state !== TicTacToeState.IN_PROGRESS)
 			this.outputs.forEach((output) => output.onGameOver?.(this));
 		else this.outputs.forEach((output) => output.onMove?.(this));
-
-		if (state === TicTacToeState.X_WON) {
-			this.winner = this.playerX;
-		} else if (state === TicTacToeState.O_WON) this.winner = this.playerO;
 	}
 
 	/**
