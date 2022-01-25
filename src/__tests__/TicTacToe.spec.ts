@@ -7,8 +7,8 @@ import {
 } from '..';
 
 export = () => {
-	const playerX = new TicTacToeManualPlayer('PlayerX', false);
-	const playerO = new TicTacToeManualPlayer('PlayerO', false);
+	const playerX = new TicTacToeManualPlayer('PlayerX', { alwaysHaveMove: false });
+	const playerO = new TicTacToeManualPlayer('PlayerO', { alwaysHaveMove: false });
 	const output = new TicTacToeTestOutput();
 
 	const tttGame = new TicTacToeGame<TicTacToeManualPlayer>(playerX, playerO, undefined, output);

@@ -9,7 +9,7 @@ export { TicTacToeTestOutput } from './output/TicTacToeTestOutput';
 export { TicTacToePlayer } from './player/TicTacToePlayer';
 export { TicTacToeRandomPlayer } from './player/TicTacToeRandomPlayer';
 export { TicTacToeManualPlayer } from './player/TicTacToeManualPlayer';
-export { TicTacToeMinMaxPlayer } from './player/TicTacToeMinMaxPlayer';
+export type { ManualPlayerConfig } from './player/TicTacToeManualPlayer';
 
 export { TicTacToeBoard } from './TicTacToeBoard';
 export { TicTacToeGame } from './TicTacToeGame';

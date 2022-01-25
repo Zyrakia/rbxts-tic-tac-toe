@@ -2,21 +2,40 @@ import { TicTacToeBoard } from 'TicTacToeBoard';
 import { TicTacToePlayer } from './TicTacToePlayer';
 
 /**
+ * This config allows for further customization
+ * of the manual player.
+ */
+export interface ManualPlayerConfig {
+	/**
+	 * Whether the player should choose a random move
+	 * if no move is set. Defaults to true.
+	 */
+	alwaysHaveMove: boolean;
+}
+
+/**
  * A player that makes a move depending on the move set
  * externally, or randomly if desired and no move is set.
  */
 export class TicTacToeManualPlayer extends TicTacToePlayer {
+	private static DEFAULT_CONFIG: ManualPlayerConfig = {
+		alwaysHaveMove: true,
+	};
+
 	/** The next move that the player should make. */
 	private nextMove?: { row: number; col: number };
+
+	private config: ManualPlayerConfig;
 
 	/**
 	 * Constructs a new TicTacToeManualPlayer.
 	 *
 	 * @param name The name of the player.
-	 * @param alwaysHaveMove Whether the player should chose a random move if no move is set. Defaults to true.
+	 * @param config The config that controls this player
 	 */
-	public constructor(name: string, private alwaysHaveMove = true) {
+	public constructor(name: string, config: Partial<ManualPlayerConfig> = {}) {
 		super(name);
+		this.config = { ...TicTacToeManualPlayer.DEFAULT_CONFIG, ...config };
 	}
 
 	/** @hidden */
@@ -27,7 +46,7 @@ export class TicTacToeManualPlayer extends TicTacToePlayer {
 			return move;
 		}
 
-		if (this.alwaysHaveMove) return this.getRandom(board);
+		if (this.config.alwaysHaveMove) return this.getRandom(board);
 	}
 
 	/**

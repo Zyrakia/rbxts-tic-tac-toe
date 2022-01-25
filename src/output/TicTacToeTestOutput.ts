@@ -14,19 +14,22 @@ export class TicTacToeTestOutput implements TicTacToeOutput {
 	private oWins = 0;
 	private draws = 0;
 
+    /** @hidden */
 	public onMove() {
-		this.movesMade++;
+        this.movesMade++;
 	}
-
-	public onGameOver(g: TicTacToeGame) {
-		this.gamesEnded++;
-
+    
+	/** @hidden */
+    public onGameOver(g: TicTacToeGame) {
+        this.gamesEnded++;
+        
 		const state = g.getState();
 		if (state === TicTacToeState.DRAW) this.draws++;
 		else if (state === TicTacToeState.X_WON) this.xWins++;
 		else if (state === TicTacToeState.O_WON) this.oWins++;
 	}
-
+    
+    /** @hidden */
 	public onGameStart() {
 		this.gamesStarted++;
 	}
