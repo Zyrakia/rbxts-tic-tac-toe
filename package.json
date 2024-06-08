@@ -13,10 +13,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/zyrakia/tic-tac-toe"
+        "url": "https://github.com/zyrakia/rbxts-tic-tac-toe"
     },
     "bugs": {
-        "url": "https://github.com/zyrakia/tic-tac-toe/issues"
+        "url": "https://github.com/zyrakia/rbxts-tic-tac-toe/issues"
     },
     "types": "out/index.d.ts",
     "publishConfig": {
